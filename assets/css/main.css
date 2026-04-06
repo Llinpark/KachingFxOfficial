@@ -1,11 +1,3 @@
-/**
-* Template Name: CoreBiz
-* Template URL: https://bootstrapmade.com/corebiz-bootstrap-business-template/
-* Updated: Aug 30 2025 with Bootstrap v5.3.8
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
-
 @charset "UTF-8";
 
 /*--------------------------------------------------------------
@@ -1142,6 +1134,55 @@ section,
   background: url("../img/bg/abstract-bg-1.webp") center/cover no-repeat;
   opacity: 0.03;
   z-index: 1;
+}
+/* This controls the size of the whole image area without cutting anything */
+
+
+
+.image-container {
+  position: relative; /* Anchor for the floating card */
+  width: 100%;
+  display: inline-block;
+}
+
+.custom-about-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px; /* Matches the clean look of the hero image */
+}
+
+/* Position the card to overlap the bottom-left corner */
+.image-overlay {
+  position: absolute;
+  bottom: 20px;     /* Distance from the bottom of the image */
+  left: -30px;      /* Pulls the card slightly outside the left edge */
+  z-index: 10;
+  background: #fff; /* Ensure it has a white background */
+  padding: 15px 25px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Adds the soft shadow seen in your screenshot */
+}
+
+
+
+#training-register-form {
+  height: 100%;
+  min-height: 720px; /* Adjust this value to match your right column height */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #f8f9fa;
+  padding: 30px;
+  border-radius: 12px;
+}
+
+#training-register-form .row {
+  flex-grow: 1;
+}
+
+#training-register-form textarea {
+  height: 160px; /* Increased height to fill the vertical gap */
 }
 
 /*--------------------------------------------------------------
