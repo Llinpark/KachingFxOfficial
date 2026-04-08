@@ -186,32 +186,66 @@
   });
 
   /*
-   * Pricing Toggle
+   * Pricing Plan Toggle (Daily / Weekly / Monthly)
    */
-
   const pricingContainers = document.querySelectorAll('.pricing-toggle-container');
 
   pricingContainers.forEach(function(container) {
-    const pricingSwitch = container.querySelector('.pricing-toggle input[type="checkbox"]');
-    const monthlyText = container.querySelector('.monthly');
-    const yearlyText = container.querySelector('.yearly');
+    const planOptions = container.querySelectorAll('.pricing-toggle .plan-option');
+    const cards = container.parentElement.querySelectorAll('.pricing-item');
 
-    pricingSwitch.addEventListener('change', function() {
-      const pricingItems = container.querySelectorAll('.pricing-item');
+    if (!planOptions.length || !cards.length) {
+      return;
+    }
 
-      if (this.checked) {
-        monthlyText.classList.remove('active');
-        yearlyText.classList.add('active');
-        pricingItems.forEach(item => {
-          item.classList.add('yearly-active');
-        });
-      } else {
-        monthlyText.classList.add('active');
-        yearlyText.classList.remove('active');
-        pricingItems.forEach(item => {
-          item.classList.remove('yearly-active');
-        });
+    function applyPlan(selectedPlan) {
+      planOptions.forEach((option) => {
+        option.classList.toggle('active', option.dataset.plan === selectedPlan);
+      });
+
+      cards.forEach((card) => {
+        const showCard = card.dataset.plan === selectedPlan;
+        const cardColumn = card.closest('div[class*="col-lg-"]');
+        if (cardColumn) {
+          cardColumn.classList.remove('col-lg-4', 'col-lg-10', 'col-xl-9');
+          cardColumn.classList.add(showCard ? 'col-lg-10' : 'col-lg-4');
+          if (showCard) {
+            cardColumn.classList.add('col-xl-9');
+          }
+          cardColumn.style.display = showCard ? '' : 'none';
+        }
+        card.classList.toggle('landscape-layout', showCard);
+      });
+    }
+
+    planOptions.forEach((option) => {
+      option.addEventListener('click', function() {
+        applyPlan(this.dataset.plan);
+      });
+    });
+
+    const defaultPlan = container.querySelector('.plan-option.active')?.dataset.plan || 'daily';
+    applyPlan(defaultPlan);
+  });
+
+  /*
+   * Reveal payment options only after plan button click
+   */
+  const paymentOptionsSection = document.querySelector('#payment-options');
+  const paymentButtons = document.querySelectorAll('.pricing .price-card .cta a[href="#payment-options"]');
+
+  paymentButtons.forEach((button) => {
+    button.addEventListener('click', function(event) {
+      if (!paymentOptionsSection) {
+        return;
       }
+
+      event.preventDefault();
+      paymentOptionsSection.classList.remove('payment-options-hidden');
+      paymentOptionsSection.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
     });
   });
 
@@ -263,5 +297,15 @@
   }
   window.addEventListener('load', navmenuScrollspy);
   document.addEventListener('scroll', navmenuScrollspy);
+
+  /*
+   * Newsletter form helpers
+   */
+  document.querySelectorAll('form.php-email-form[action="forms/newsletter.php"]').forEach((form) => {
+    const emailInput = form.querySelector('input[name="email"]');
+    if (emailInput) {
+      emailInput.setAttribute('required', 'required');
+    }
+  });
 
 })();

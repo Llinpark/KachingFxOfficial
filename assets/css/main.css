@@ -16,7 +16,7 @@
   --background-color: #f4f8ff; /* Light background for the website */
   --default-color: #15233f; /* Main text color for content */
   --heading-color: #081c3d; /* Strong navy heading color */
-  --accent-color: #ff8f19; /* Bright orange accent for buttons, links, and highlights */
+  --accent-color: #d4a026; /* Gold accent for buttons, links, and highlights */
   --surface-color: #ffffff; /* Surface color for cards, boxes, and panels */
   --contrast-color: #ffffff; /* Contrast text color for dark accent backgrounds */
 }
@@ -24,11 +24,11 @@
 /* Nav Menu Colors - The following color variables are used specifically for the navigation menu. They are separate from the global colors to allow for more customization options */
 :root {
   --nav-color: #15233f;  /* The default color of the main navmenu links */
-  --nav-hover-color: #ff8f19; /* Applied to main navmenu links when they are hovered over or active */
+  --nav-hover-color: #d4a026; /* Applied to main navmenu links when they are hovered over or active */
   --nav-mobile-background-color: #081c3d; /* Used as the background color for mobile navigation menu */
   --nav-dropdown-background-color: #081c3d; /* Used as the background color for dropdown items that appear when hovering over primary navigation items */
   --nav-dropdown-color: #ffffff; /* Used for navigation links of the dropdown items in the navigation menu. */
-  --nav-dropdown-hover-color: #ff8f19; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
+  --nav-dropdown-hover-color: #d4a026; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
 }
 
 /* Color Presets - These classes override global colors when applied to any section or element, providing reuse of the same color scheme. */
@@ -39,7 +39,7 @@
 }
 
 .dark-background {
-  --background-color: #081c3d;
+  --background-color: #d4a026;
   --default-color: #ffffff;
   --heading-color: #ffffff;
   --surface-color: #13264b;
@@ -204,6 +204,11 @@ h6 {
 .header .logo svg {
   max-height: 44px;
   margin-right: 10px;
+}
+
+/* Blend JPG logo background with navbar */
+.header .logo img {
+  mix-blend-mode: multiply;
 }
 
 .header .logo svg {
@@ -825,7 +830,7 @@ section,
 .section {
   color: var(--default-color);
   background-color: var(--background-color);
-  padding: 60px 0;
+  padding: 50px 0;
   scroll-margin-top: 78px;
   overflow: clip;
 }
@@ -843,7 +848,7 @@ section,
 --------------------------------------------------------------*/
 .section-title {
   text-align: center;
-  padding-bottom: 60px;
+  padding-bottom: 40px;
   position: relative;
 }
 
@@ -901,7 +906,7 @@ section,
 }
 
 .hero .hero-content .content {
-  padding: 80px 0;
+  padding: 70px 0 50px;
 }
 
 .hero .hero-content .content h1 {
@@ -1183,6 +1188,32 @@ section,
 
 #training-register-form textarea {
   height: 160px; /* Increased height to fill the vertical gap */
+}
+
+@media (max-width: 991px) {
+  #training-register-form {
+    min-height: auto;
+    padding: 20px;
+  }
+
+  #training-register-form textarea {
+    height: 120px;
+  }
+}
+
+@media (max-width: 576px) {
+  #training-register-form {
+    padding: 16px;
+    border-radius: 10px;
+  }
+
+  #training-register-form .row {
+    row-gap: 10px;
+  }
+
+  #training-register-form .btn.btn-primary {
+    width: 100%;
+  }
 }
 
 /*--------------------------------------------------------------
@@ -2801,62 +2832,22 @@ section,
   border: 1px solid var(--accent-soft);
 }
 
-.pricing .pricing-toggle-container .pricing-toggle .monthly,
-.pricing .pricing-toggle-container .pricing-toggle .yearly {
+.pricing .pricing-toggle-container .pricing-toggle .plan-option {
   font-weight: 600;
   color: var(--default-color);
   opacity: 0.7;
   transition: 0.3s;
   cursor: pointer;
+  border: 0;
+  background: transparent;
+  border-radius: 999px;
+  padding: 6px 14px;
 }
 
-.pricing .pricing-toggle-container .pricing-toggle .monthly.active,
-.pricing .pricing-toggle-container .pricing-toggle .yearly.active {
+.pricing .pricing-toggle-container .pricing-toggle .plan-option.active {
   color: var(--heading-color);
   opacity: 1;
-}
-
-.pricing .pricing-toggle-container .pricing-toggle .switch {
-  position: relative;
-  display: inline-block;
-  width: 54px;
-  height: 28px;
-}
-
-.pricing .pricing-toggle-container .pricing-toggle .switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.pricing .pricing-toggle-container .pricing-toggle .switch .slider {
-  position: absolute;
-  cursor: pointer;
-  inset: 0;
-  background: var(--accent-soft);
-  transition: 0.3s;
-  border-radius: 999px;
-}
-
-.pricing .pricing-toggle-container .pricing-toggle .switch .slider::before {
-  position: absolute;
-  content: "";
-  height: 22px;
-  width: 22px;
-  left: 3px;
-  top: 3px;
-  background-color: var(--surface-color);
-  transition: 0.3s;
-  border-radius: 50%;
-  box-shadow: 0 2px 8px color-mix(in srgb, var(--default-color), transparent 85%);
-}
-
-.pricing .pricing-toggle-container .pricing-toggle .switch input:checked+.slider {
-  background: var(--accent-color);
-}
-
-.pricing .pricing-toggle-container .pricing-toggle .switch input:checked+.slider::before {
-  transform: translateX(26px);
+  background: color-mix(in srgb, var(--accent-color), transparent 82%);
 }
 
 .pricing .pricing-toggle-container .hint {
@@ -2956,7 +2947,7 @@ section,
   color: var(--heading-color);
   font-weight: 800;
   line-height: 1;
-  display: none;
+  display: inline-flex;
 }
 
 .pricing .price-card .card-head .price-wrap .price sup {
@@ -2966,8 +2957,7 @@ section,
   margin-right: 2px;
 }
 
-.pricing .price-card .card-head .price-wrap .price.price-monthly,
-.pricing .price-card .card-head .price-wrap .price.price-yearly {
+.pricing .price-card .card-head .price-wrap .price {
   font-size: 40px;
 }
 
@@ -3006,6 +2996,7 @@ section,
 
 .pricing .price-card .cta {
   margin-top: auto;
+  text-align: center;
 }
 
 .pricing .price-card .cta .btn-choose {
@@ -3016,6 +3007,10 @@ section,
   padding: 10px 16px;
   border-radius: 10px;
   transition: 0.3s;
+  width: auto !important;
+  min-width: 220px;
+  display: inline-flex;
+  justify-content: center;
 }
 
 .pricing .price-card .cta .btn-choose:hover {
@@ -3023,43 +3018,164 @@ section,
   color: var(--contrast-color);
 }
 
-.pricing .pricing-toggle-container~.row .price-card .price-monthly {
-  display: inline-flex;
-}
-
-.pricing .pricing-toggle-container~.row .price-card .price-yearly {
+#payment-options.payment-options-hidden {
   display: none;
 }
 
-@supports (selector(:has(*))) {
-  .pricing .pricing-toggle-container:has(.switch input:checked)~.row .price-card .price-monthly {
-    display: none;
-  }
-
-  .pricing .pricing-toggle-container:has(.switch input:checked)~.row .price-card .price-yearly {
-    display: inline-flex;
-  }
-
-  .pricing .pricing-toggle-container:has(.switch input:checked)~.row .pricing-toggle .monthly {
-    opacity: 0.6;
-  }
-
-  .pricing .pricing-toggle-container:has(.switch input:checked)~.row .pricing-toggle .yearly {
-    opacity: 1;
-    color: var(--heading-color);
-  }
+#events .event-card {
+  padding: 18px;
+  border-radius: 14px;
+  border: 1px solid color-mix(in srgb, var(--default-color), transparent 88%);
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--default-color), transparent 92%);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-@supports not (selector(:has(*))) {
-  .pricing .pricing-toggle-container .yearly::after {
-    content: " ";
+#events .events-group-title {
+  margin: 8px 0 18px;
+  font-size: 26px;
+}
+
+#events .event-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 34px color-mix(in srgb, var(--default-color), transparent 88%);
+}
+
+#events .event-card-image {
+  width: 100%;
+  height: 210px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+
+#events .event-meta {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+#events .event-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+#events .event-card h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+#events .event-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: 1px solid var(--accent-color);
+  color: var(--accent-color);
+  background: transparent;
+  font-weight: 600;
+}
+
+#events .event-back-btn:hover {
+  background: var(--accent-color);
+  color: var(--contrast-color);
+}
+
+.broker-open-card {
+  width: 100%;
+  min-height: 58px;
+  padding: 12px 18px;
+  border-radius: 12px;
+  border: 1px solid color-mix(in srgb, var(--accent-color), transparent 65%);
+  background: color-mix(in srgb, var(--accent-color), transparent 92%);
+  color: var(--heading-color);
+  font-weight: 600;
+}
+
+.broker-open-card:hover {
+  background: color-mix(in srgb, var(--accent-color), transparent 86%);
+  color: var(--heading-color);
+}
+
+.broker-signup-box {
+  padding: 18px 16px;
+  border-radius: 10px;
+  border: 1px solid color-mix(in srgb, var(--default-color), transparent 88%);
+  background: var(--surface-color);
+}
+
+.broker-signup-actions {
+  gap: 12px;
+}
+
+.broker-signup-actions .btn {
+  min-width: 180px;
+  padding: 10px 14px;
+  text-align: center;
+}
+
+.hero .brokers-compact.section {
+  padding: 0 0 6px;
+}
+
+.hero .brokers-compact + #services .section-title {
+  padding-bottom: 16px;
+  margin-top: 0;
+}
+
+.event-modal-image {
+  width: 100%;
+  max-height: 340px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+@media (min-width: 992px) {
+  .pricing .price-card.landscape-layout {
+    display: grid;
+    grid-template-columns: minmax(280px, 0.95fr) minmax(320px, 1.05fr);
+    grid-template-areas:
+      "head features"
+      "cta features";
+    gap: 24px;
+    align-items: start;
+  }
+
+  .pricing .price-card.landscape-layout .card-head {
+    grid-area: head;
+    margin-bottom: 0;
+  }
+
+  .pricing .price-card.landscape-layout .feature-list {
+    grid-area: features;
+    border-top: 0;
+    border-left: 1px dashed var(--line);
+    padding-top: 0;
+    padding-left: 20px;
+    margin-bottom: 0 !important;
+  }
+
+  .pricing .price-card.landscape-layout .cta {
+    grid-area: cta;
+    margin-top: 4px;
+    text-align: center;
+  }
+
+  .pricing .price-card.landscape-layout .cta .btn-choose {
+    width: auto !important;
+    min-width: 220px;
+    display: inline-flex;
+    justify-content: center;
   }
 }
 
 @media (max-width: 992px) {
 
-  .pricing .price-card .card-head .price-wrap .price.price-monthly,
-  .pricing .price-card .card-head .price-wrap .price.price-yearly {
+  .pricing .price-card .card-head .price-wrap .price {
     font-size: 36px;
   }
 
@@ -3351,8 +3467,7 @@ section,
 }
 
 #training-register-form .form-control:focus {
-  outline: 1px solid var(--accent-color);
-  outline-offset: 2px;
+  outline: none;
   border-color: var(--accent-color);
   box-shadow: none;
 }
@@ -5025,4 +5140,224 @@ section,
 --------------------------------------------------------------*/
 .starter-section {
   /* Add your styles here */
+}
+
+/*--------------------------------------------------------------
+# Global Responsive Refinements
+--------------------------------------------------------------*/
+@media (max-width: 1199px) {
+  .section-title h2 {
+    font-size: 30px;
+  }
+
+  .hero .content h1 {
+    font-size: 42px;
+  }
+}
+
+@media (max-width: 991px) {
+  .topbar .contact-info {
+    font-size: 13px;
+  }
+
+  .page-title h1 {
+    font-size: 34px;
+  }
+
+  .section-title {
+    padding-bottom: 28px;
+  }
+
+  .services .service-item,
+  .featured-services .service-item,
+  .pricing .price-card {
+    padding: 22px;
+  }
+
+  .event-modal-image {
+    max-height: 280px;
+  }
+}
+
+@media (max-width: 767px) {
+  .topbar .contact-info i {
+    margin-right: 10px;
+  }
+
+  .hero .content h1 {
+    font-size: 32px;
+    line-height: 1.25;
+  }
+
+  .hero .content p {
+    font-size: 15px;
+  }
+
+  .hero .cta-group {
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .hero .cta-group .btn-primary,
+  .hero .cta-group .btn-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .footer .footer-top .footer-links,
+  .footer .footer-top .footer-about {
+    text-align: center;
+  }
+
+  .footer .footer-top .footer-links ul {
+    padding-left: 0;
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+  }
+
+  .footer .footer-top .footer-links ul li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .footer .social-links {
+    justify-content: center;
+  }
+
+  .broker-signup-actions {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 576px) {
+  .page-title {
+    padding: 36px 0;
+  }
+
+  .page-title h1 {
+    font-size: 28px;
+  }
+
+  .section,
+  section {
+    padding: 36px 0;
+  }
+
+  .services .service-item,
+  .featured-services .service-item,
+  .pricing .price-card,
+  .event-card {
+    padding: 16px;
+    border-radius: 10px;
+  }
+
+  .event-card-image {
+    height: 170px;
+  }
+
+  .event-modal-image {
+    max-height: 220px;
+  }
+
+  .broker-open-card {
+    min-height: 50px;
+    padding: 10px 12px;
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .broker-signup-actions .btn {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .hero .content h1 {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .newsletter-form input[type="email"],
+  .newsletter-form input[type="submit"] {
+    width: 100%;
+  }
+}
+
+@media (max-width: 1024px) and (orientation: landscape) {
+  .section,
+  section {
+    padding: 34px 0;
+  }
+
+  .hero .content h1 {
+    font-size: 34px;
+  }
+
+  .hero .hero-image img {
+    max-height: 420px;
+    object-fit: cover;
+  }
+
+  .event-card-image {
+    height: 175px;
+  }
+}
+
+@media (max-width: 375px) {
+  .topbar .contact-info {
+    display: none !important;
+  }
+
+  .branding .logo img {
+    max-height: 34px;
+  }
+
+  .page-title h1,
+  .section-title h2 {
+    font-size: 24px;
+    line-height: 1.3;
+  }
+
+  .hero .content h1 {
+    font-size: 26px;
+    line-height: 1.25;
+  }
+
+  .hero .content p {
+    font-size: 14px;
+  }
+
+  .services .service-item h3,
+  .event-card h3,
+  .pricing .price-card .card-head .title {
+    font-size: 18px;
+  }
+
+  .pricing .price-card .card-head .price-wrap .price {
+    font-size: 32px;
+  }
+
+  .event-card-image {
+    height: 150px;
+  }
+
+  .event-modal-image {
+    max-height: 190px;
+  }
+
+  .broker-open-card {
+    font-size: 13px;
+    min-height: 46px;
+    padding: 9px 10px;
+  }
+
+  .footer .footer-top .footer-links ul {
+    text-align: center;
+    display: block;
+  }
 }
