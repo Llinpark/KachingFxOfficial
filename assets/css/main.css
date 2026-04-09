@@ -146,9 +146,14 @@ h6 {
 .header .topbar {
   background-color: var(--background-color);
   height: 40px;
+  max-height: 40px;
   padding: 0;
   font-size: 14px;
-  transition: all 0.5s;
+  opacity: 1;
+  transform: translateY(0);
+  overflow: hidden;
+  will-change: max-height, opacity, transform;
+  transition: max-height 0.35s ease, opacity 0.25s ease, transform 0.35s ease;
 }
 
 .header .topbar .contact-info i {
@@ -235,9 +240,11 @@ h6 {
 }
 
 .scrolled .header .topbar {
-  height: 0;
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-8px);
   visibility: hidden;
-  overflow: hidden;
+  pointer-events: none;
 }
 
 /*--------------------------------------------------------------
@@ -498,7 +505,7 @@ h6 {
 
 .footer .footer-newsletter {
   background-color: color-mix(in srgb, var(--accent-color), transparent 92%);
-  padding: 50px 0;
+  padding: 38px 0;
 }
 
 .footer .footer-newsletter h4 {
@@ -550,7 +557,7 @@ h6 {
 }
 
 .footer .footer-top {
-  padding-top: 50px;
+  padding-top: 34px;
 }
 
 .footer .social-links a {
@@ -830,7 +837,7 @@ section,
 .section {
   color: var(--default-color);
   background-color: var(--background-color);
-  padding: 50px 0;
+  padding: 42px 0;
   scroll-margin-top: 78px;
   overflow: clip;
 }
@@ -848,15 +855,15 @@ section,
 --------------------------------------------------------------*/
 .section-title {
   text-align: center;
-  padding-bottom: 40px;
+  padding-bottom: 28px;
   position: relative;
 }
 
 .section-title h2 {
   font-size: 32px;
   font-weight: 700;
-  margin-bottom: 20px;
-  padding-bottom: 20px;
+  margin-bottom: 14px;
+  padding-bottom: 14px;
   position: relative;
 }
 
@@ -906,7 +913,7 @@ section,
 }
 
 .hero .hero-content .content {
-  padding: 70px 0 50px;
+  padding: 56px 0 36px;
 }
 
 .hero .hero-content .content h1 {
@@ -1221,7 +1228,7 @@ section,
 --------------------------------------------------------------*/
 .featured-services .service-item {
   height: 100%;
-  padding: 60px 40px;
+  padding: 50px 32px;
   border-radius: 8px;
   transition: all 0.4s ease;
   background-color: var(--surface-color);
@@ -1272,7 +1279,7 @@ section,
 
 @media (max-width: 768px) {
   .featured-services .service-item {
-    padding: 40px 30px;
+    padding: 34px 24px;
   }
 }
 
@@ -2070,11 +2077,11 @@ section,
 # Services Section
 --------------------------------------------------------------*/
 .services {
-  padding: 120px 0;
+  padding: 84px 0;
 }
 
 .services .service-item {
-  padding: 60px 40px;
+  padding: 50px 32px;
   background-color: var(--surface-color);
   border-radius: 8px;
   transition: all 0.4s ease;
@@ -2108,7 +2115,7 @@ section,
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 40px;
+  margin-bottom: 28px;
   background: linear-gradient(135deg, var(--accent-color), color-mix(in srgb, var(--accent-color), #6c5ce7 20%));
   border-radius: 50%;
 }
@@ -2123,7 +2130,7 @@ section,
 .services h3 {
   font-size: 24px;
   font-weight: 300;
-  margin-bottom: 24px;
+  margin-bottom: 18px;
   letter-spacing: -0.5px;
   line-height: 1.3;
 }
@@ -2132,7 +2139,7 @@ section,
   font-size: 16px;
   line-height: 1.7;
   color: color-mix(in srgb, var(--default-color), transparent 20%);
-  margin-bottom: 40px;
+  margin-bottom: 28px;
 }
 
 .services .service-link {
@@ -2166,7 +2173,7 @@ section,
   }
 
   .services .service-item {
-    padding: 40px 24px;
+    padding: 32px 20px;
   }
 
   .services .service-icon {
@@ -2254,7 +2261,7 @@ section,
 .testimonials .testimonial-header {
   position: relative;
   text-align: center;
-  padding: 30px 30px 20px;
+  padding: 24px 24px 14px;
   background: linear-gradient(135deg, color-mix(in srgb, var(--surface-color), var(--accent-color) 3%) 0%, var(--surface-color) 100%);
 }
 
@@ -2281,7 +2288,7 @@ section,
 }
 
 .testimonials .testimonial-body {
-  padding: 0 30px 20px;
+  padding: 0 24px 14px;
 }
 
 .testimonials .testimonial-body p {
@@ -2315,7 +2322,7 @@ section,
 }
 
 .testimonials .testimonial-footer {
-  padding: 20px 30px 30px;
+  padding: 14px 24px 20px;
   text-align: center;
   position: relative;
 }
@@ -2669,7 +2676,7 @@ section,
 }
 
 .portfolio .content {
-  padding: 30px 0;
+  padding: 20px 0 12px;
   text-align: center;
 }
 
@@ -2858,7 +2865,7 @@ section,
   background: var(--surface-color);
   border: 1px solid var(--line);
   border-radius: var(--card-radius);
-  padding: 28px;
+  padding: 24px;
   box-shadow: var(--card-shadow);
   display: flex;
   flex-direction: column;
@@ -3022,6 +3029,32 @@ section,
   display: none;
 }
 
+.merchandise .merch-item-image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 14px;
+  transition: transform 0.4s ease-out;
+}
+
+.merchandise .service-item {
+  overflow: hidden;
+}
+
+.merchandise .service-item:hover .merch-item-image {
+  transform: scale(1.05);
+}
+
+.merchandise .service-item h3 {
+  font-size: 1.35rem;
+  line-height: 1.3;
+  text-align: center;
+  font-family: "Raleway", "Montserrat", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
 #events .event-card {
   padding: 18px;
   border-radius: 14px;
@@ -3042,7 +3075,8 @@ section,
 
 #events .event-card-image {
   width: 100%;
-  height: 210px;
+  height: auto;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
   border-radius: 10px;
   margin-bottom: 12px;
@@ -3071,18 +3105,112 @@ section,
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  margin-top: 10px;
-  padding: 10px 16px;
-  border-radius: 10px;
-  border: 1px solid var(--accent-color);
-  color: var(--accent-color);
-  background: transparent;
-  font-weight: 600;
+  justify-content: center;
+  margin-top: 8px;
+  padding: 7px 13px;
+  border-radius: 999px;
+  border: 1px solid #0b2f88;
+  color: #ffd700;
+  background: color-mix(in srgb, #0b2f88, transparent 92%);
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 1.2;
+  transition: all 0.22s ease;
 }
 
 #events .event-back-btn:hover {
-  background: var(--accent-color);
-  color: var(--contrast-color);
+  background: #0b2f88;
+  color: #ffd700;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px color-mix(in srgb, #0b2f88, transparent 78%);
+}
+
+.modal[id^="eventModal"] .modal-content {
+  border: 1px solid color-mix(in srgb, var(--accent-color), transparent 72%);
+  border-radius: 16px;
+  overflow: hidden;
+  background: linear-gradient(180deg,
+      color-mix(in srgb, var(--surface-color), #eaf0ff 18%) 0%,
+      var(--surface-color) 100%);
+  box-shadow: 0 20px 45px color-mix(in srgb, #041b5a, transparent 78%);
+}
+
+.modal[id^="eventModal"] .modal-header {
+  border-bottom: 1px solid color-mix(in srgb, var(--accent-color), transparent 76%);
+  background: linear-gradient(135deg, #041b5a 0%, #0b2f88 100%);
+  padding: 14px 18px;
+  text-align: center !important;
+  justify-content: center;
+  position: relative;
+}
+
+.modal[id^="eventModal"] .modal-title {
+  color: #ffd700 !important;
+  font-family: "Raleway", "Montserrat", sans-serif;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  width: 100%;
+  text-align: center !important;
+}
+
+.modal[id^="eventModal"] .modal-body {
+  color: var(--default-color);
+  line-height: 1.7;
+  font-size: 15px;
+  font-family: "Poppins", "Roboto", sans-serif;
+  text-align: center !important;
+}
+
+.modal[id^="eventModal"] .modal-body h4 {
+  color: #d4af37 !important;
+  font-family: "Raleway", "Montserrat", sans-serif;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  text-align: center !important;
+}
+
+.modal[id^="eventModal"] .modal-body p {
+  margin-bottom: 12px;
+  text-align: center !important;
+}
+
+.modal[id^="eventModal"] .modal-body p strong {
+  color: #0b2f88;
+  font-weight: 700;
+}
+
+.modal[id^="eventModal"] .modal-body ul {
+  margin: 0 0 12px;
+  padding: 14px 16px;
+  border-top: 3px solid color-mix(in srgb, var(--accent-color), transparent 40%);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--accent-color), transparent 94%);
+  list-style-position: inside;
+  text-align: center !important;
+}
+
+.modal[id^="eventModal"] .modal-body ul li {
+  margin-bottom: 8px;
+}
+
+.modal[id^="eventModal"] .modal-body ul li:last-child {
+  margin-bottom: 0;
+}
+
+.modal[id^="eventModal"] .modal-body ul li::marker {
+  color: var(--accent-color);
+}
+
+.modal[id^="eventModal"] .modal-header .btn-close {
+  filter: invert(1) grayscale(1) brightness(2);
+  opacity: 0.95;
+  position: absolute;
+  top: 14px;
+  right: 14px;
+}
+
+.modal[id^="eventModal"] .modal-header .btn-close:hover {
+  opacity: 1;
 }
 
 .broker-open-card {
@@ -3090,22 +3218,46 @@ section,
   min-height: 58px;
   padding: 12px 18px;
   border-radius: 12px;
-  border: 1px solid color-mix(in srgb, var(--accent-color), transparent 65%);
-  background: color-mix(in srgb, var(--accent-color), transparent 92%);
-  color: var(--heading-color);
+  border: 1px solid #f2c94c;
+  background: linear-gradient(135deg, var(--heading-color) 0%, color-mix(in srgb, var(--heading-color), #1b3f73 20%) 100%);
+  color: #f2c94c;
   font-weight: 600;
+  box-shadow: none;
 }
 
 .broker-open-card:hover {
-  background: color-mix(in srgb, var(--accent-color), transparent 86%);
+  background: linear-gradient(135deg, color-mix(in srgb, var(--heading-color), white 8%) 0%, color-mix(in srgb, var(--heading-color), #2b548f 28%) 100%);
+  color: #ffd700;
+  box-shadow: none;
+}
+
+.broker-open-card span {
+  color: #ffd700;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.45), 0 0 10px rgba(255, 215, 0, 0.25);
+}
+
+.broker-social-links {
+  gap: 20px;
+}
+
+.broker-social-links a {
   color: var(--heading-color);
+  font-size: 34px;
+  line-height: 1;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.broker-social-links a:hover {
+  color: var(--accent-color);
+  transform: translateY(-2px) scale(1.04);
 }
 
 .broker-signup-box {
   padding: 18px 16px;
   border-radius: 10px;
-  border: 1px solid color-mix(in srgb, var(--default-color), transparent 88%);
+  border: 2px solid #1e5bff;
   background: var(--surface-color);
+  box-shadow: 0 8px 22px color-mix(in srgb, #1e5bff, transparent 86%);
 }
 
 .broker-signup-actions {
@@ -3116,6 +3268,10 @@ section,
   min-width: 180px;
   padding: 10px 14px;
   text-align: center;
+  font-weight: 700;
+  border-width: 2px;
+  border-color: #1e5bff;
+  color: #1e5bff;
 }
 
 .hero .brokers-compact.section {
@@ -3129,8 +3285,9 @@ section,
 
 .event-modal-image {
   width: 100%;
+  height: auto;
   max-height: 340px;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 12px;
 }
 
@@ -3385,11 +3542,11 @@ section,
 # Contact Section
 --------------------------------------------------------------*/
 .contact .contact-form-container {
-  padding: 60px 0;
+  padding: 44px 0;
 }
 
 .contact .contact-form-container .form-intro {
-  margin-bottom: 60px;
+  margin-bottom: 38px;
 }
 
 .contact .contact-form-container .form-intro h2 {
@@ -3416,7 +3573,7 @@ section,
 }
 
 .contact .contact-form-container .contact-form .row {
-  margin-bottom: 40px;
+  margin-bottom: 28px;
 }
 
 .contact .contact-form-container .contact-form .row:last-of-type {
@@ -3425,11 +3582,11 @@ section,
 
 .contact .contact-form-container .contact-form .form-field {
   position: relative;
-  margin-bottom: 40px;
+  margin-bottom: 28px;
 }
 
 .contact .contact-form-container .contact-form .form-field.message-field {
-  margin-bottom: 50px;
+  margin-bottom: 34px;
 }
 
 .contact .contact-form-container .contact-form .form-field .field-label {
@@ -3483,7 +3640,7 @@ section,
   background: transparent;
   border: 1px solid var(--accent-color);
   color: var(--accent-color);
-  padding: 18px 40px;
+  padding: 14px 30px;
   font-size: 14px;
   font-weight: 500;
   letter-spacing: 1px;
@@ -3512,11 +3669,11 @@ section,
 .contact .contact-sidebar {
   background: color-mix(in srgb, var(--accent-color), transparent 97%);
   height: 100%;
-  padding: 60px 40px;
+  padding: 44px 30px;
 }
 
 .contact .contact-sidebar .contact-header {
-  margin-bottom: 60px;
+  margin-bottom: 36px;
 }
 
 .contact .contact-sidebar .contact-header h3 {
@@ -3536,14 +3693,14 @@ section,
 }
 
 .contact .contact-sidebar .contact-methods {
-  margin-bottom: 60px;
+  margin-bottom: 36px;
 }
 
 .contact .contact-sidebar .contact-method {
   display: flex;
   align-items: flex-start;
   gap: 20px;
-  margin-bottom: 40px;
+  margin-bottom: 28px;
 }
 
 .contact .contact-sidebar .contact-method:last-child {
@@ -3627,40 +3784,40 @@ section,
 
 @media (max-width: 992px) {
   .contact .contact-form-container {
-    padding: 40px 0;
+    padding: 32px 0;
   }
 
   .contact .contact-sidebar {
-    padding: 40px 30px;
-    margin-bottom: 40px;
+    padding: 30px 24px;
+    margin-bottom: 28px;
   }
 }
 
 @media (max-width: 768px) {
   .contact .contact-form-container .form-intro {
-    margin-bottom: 40px;
+    margin-bottom: 28px;
     text-align: center;
   }
 
   .contact .contact-form-container .contact-form .row {
-    margin-bottom: 20px;
+    margin-bottom: 16px;
   }
 
   .contact .contact-form-container .contact-form .form-field {
-    margin-bottom: 30px;
+    margin-bottom: 22px;
   }
 
   .contact .contact-sidebar {
-    padding: 30px 25px;
+    padding: 24px 20px;
   }
 
   .contact .contact-sidebar .contact-header,
   .contact .contact-sidebar .contact-methods {
-    margin-bottom: 40px;
+    margin-bottom: 26px;
   }
 
   .contact .contact-sidebar .contact-method {
-    margin-bottom: 30px;
+    margin-bottom: 22px;
   }
 }
 
@@ -5156,6 +5313,15 @@ section,
 }
 
 @media (max-width: 991px) {
+  .section,
+  section {
+    padding: 36px 0;
+  }
+
+  .page-title {
+    padding: 22px 0;
+  }
+
   .topbar .contact-info {
     font-size: 13px;
   }
@@ -5171,7 +5337,7 @@ section,
   .services .service-item,
   .featured-services .service-item,
   .pricing .price-card {
-    padding: 22px;
+    padding: 16px;
   }
 
   .event-modal-image {
@@ -5236,7 +5402,7 @@ section,
 
 @media (max-width: 576px) {
   .page-title {
-    padding: 36px 0;
+    padding: 18px 0;
   }
 
   .page-title h1 {
@@ -5245,19 +5411,20 @@ section,
 
   .section,
   section {
-    padding: 36px 0;
+    padding: 30px 0;
   }
 
   .services .service-item,
   .featured-services .service-item,
   .pricing .price-card,
   .event-card {
-    padding: 16px;
+    padding: 12px;
     border-radius: 10px;
   }
 
   .event-card-image {
-    height: 170px;
+    height: auto;
+    aspect-ratio: 4 / 3;
   }
 
   .event-modal-image {
@@ -5343,7 +5510,8 @@ section,
   }
 
   .event-card-image {
-    height: 150px;
+    height: auto;
+    aspect-ratio: 4 / 3;
   }
 
   .event-modal-image {

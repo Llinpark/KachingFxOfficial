@@ -12,11 +12,24 @@
   /**
    * Apply .scrolled class to the body as the page is scrolled down
    */
+  let hasScrolledClass = false;
+
   function toggleScrolled() {
     const selectBody = document.querySelector('body');
     const selectHeader = document.querySelector('#header');
     if (!selectHeader.classList.contains('scroll-up-sticky') && !selectHeader.classList.contains('sticky-top') && !selectHeader.classList.contains('fixed-top')) return;
-    window.scrollY > 100 ? selectBody.classList.add('scrolled') : selectBody.classList.remove('scrolled');
+
+    const enterAt = 120;
+    const exitAt = 80;
+    const scrollY = window.scrollY;
+
+    if (!hasScrolledClass && scrollY > enterAt) {
+      selectBody.classList.add('scrolled');
+      hasScrolledClass = true;
+    } else if (hasScrolledClass && scrollY < exitAt) {
+      selectBody.classList.remove('scrolled');
+      hasScrolledClass = false;
+    }
   }
 
   document.addEventListener('scroll', toggleScrolled);
